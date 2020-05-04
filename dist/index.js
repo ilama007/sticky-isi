@@ -96,9 +96,11 @@ var StickyISI = /*#__PURE__*/function (_Component) {
     });
 
     return /*#__PURE__*/React__default.createElement("div", null, /*#__PURE__*/React__default.createElement("div", {
+      className: this.props.className,
       style: this.props.normalStyles,
       id: "normal-chappy-isi"
     }, this.props.children), !this.state.isAtBottom && /*#__PURE__*/React__default.createElement(reactPortal.Portal, null, /*#__PURE__*/React__default.createElement("div", {
+      className: this.props.className,
       style: fixedStyles
     }, this.props.children)));
   };
@@ -111,7 +113,8 @@ StickyISI.propTypes = {
   stickAtThreshold: PropTypes.number,
   stickyStyles: PropTypes.object,
   normalStyles: PropTypes.object,
-  onFooterStateChange: PropTypes.func
+  onFooterStateChange: PropTypes.func,
+  className: PropTypes.string
 };
 StickyISI.defaultProps = {
   stickyHeight: 150,
