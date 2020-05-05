@@ -1,6 +1,6 @@
 {
   "name": "@ilama007/sticky-isi",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "React package for sticky ISI for a typical Pharma sites. Credit original code: https://www.npmjs.com/package/react-sticky-footer",
   "author": "Dilip Lama",
   "license": "MIT",

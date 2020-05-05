@@ -92,11 +92,6 @@ export default class StickyISI extends Component {
 
 StickyISI.propTypes = {
   /**
-   * Element reference to footer
-   */
-  // eslint-disable-next-line no-undef
-  footerRef: PropTypes.instanceOf(Element),
-  /**
    * Height of the sticky on the screen(normally fixed)
    */
   stickyHeight: PropTypes.number,
