@@ -106,7 +106,6 @@ var StickyISI = /*#__PURE__*/function (_Component) {
   return StickyISI;
 }(Component);
 StickyISI.propTypes = {
-  footerRef: PropTypes.instanceOf(Element),
   stickyHeight: PropTypes.number,
   stickAtThreshold: PropTypes.number,
   stickyStyles: PropTypes.object,
