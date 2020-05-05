@@ -108,7 +108,7 @@ var StickyISI = /*#__PURE__*/function (_Component) {
   return StickyISI;
 }(React.Component);
 StickyISI.propTypes = {
-  footerRef: PropTypes.node,
+  footerRef: PropTypes.instanceOf(Element),
   stickyHeight: PropTypes.number,
   stickAtThreshold: PropTypes.number,
   stickyStyles: PropTypes.object,

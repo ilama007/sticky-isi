@@ -2,75 +2,39 @@ import React, { Component } from 'react';
 import { Portal } from 'react-portal';
 import PropTypes from 'prop-types';
 
-function _extends() {
-  _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
+class StickyISI extends Component {
+  constructor(props) {
+    super(props);
 
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
+    this.determineState = () => {
+      const scrollOffset = window.pageYOffset + window.innerHeight;
+      const contentHeight = document.body.clientHeight - (this.props.footerRef.offsetHeight + document.getElementById('normal-chappy-isi').offsetHeight - this.props.stickyHeight);
 
-    return target;
-  };
-
-  return _extends.apply(this, arguments);
-}
-
-function _inheritsLoose(subClass, superClass) {
-  subClass.prototype = Object.create(superClass.prototype);
-  subClass.prototype.constructor = subClass;
-  subClass.__proto__ = superClass;
-}
-
-var StickyISI = /*#__PURE__*/function (_Component) {
-  _inheritsLoose(StickyISI, _Component);
-
-  function StickyISI(props) {
-    var _this;
-
-    _this = _Component.call(this, props) || this;
-
-    _this.determineState = function () {
-      var scrollOffset = window.pageYOffset + window.innerHeight;
-
-      var contentHeight = document.body.clientHeight - (_this.props.footerRef.offsetHeight + document.getElementById('normal-chappy-isi').offsetHeight - _this.props.stickyHeight);
-
-      if (!_this.state.isAtBottom && scrollOffset >= contentHeight) {
-        _this.setState({
+      if (!this.state.isAtBottom && scrollOffset >= contentHeight) {
+        this.setState({
           isAtBottom: true
         });
-
-        _this.props.onFooterStateChange && _this.props.onFooterStateChange(true);
-      } else if (_this.state.isAtBottom && scrollOffset < contentHeight - contentHeight * _this.props.stickAtThreshold) {
-        _this.setState({
+        this.props.onFooterStateChange && this.props.onFooterStateChange(true);
+      } else if (this.state.isAtBottom && scrollOffset < contentHeight - contentHeight * this.props.stickAtThreshold) {
+        this.setState({
           isAtBottom: false
         });
-
-        _this.props.onFooterStateChange && _this.props.onFooterStateChange(false);
+        this.props.onFooterStateChange && this.props.onFooterStateChange(false);
       }
     };
 
-    _this.handleScroll = function () {
-      _this.determineState();
+    this.handleScroll = () => {
+      this.determineState();
     };
 
-    _this.state = {
+    this.state = {
       isAtBottom: false
     };
-    return _this;
   }
 
-  var _proto = StickyISI.prototype;
-
-  _proto.componentDidMount = function componentDidMount() {
-    var _this2 = this;
-
-    this.observer = new MutationObserver(function (mutations) {
-      _this2.determineState();
+  componentDidMount() {
+    this.observer = new MutationObserver(mutations => {
+      this.determineState();
     });
     this.observer.observe(document.body, {
       childList: true,
@@ -79,19 +43,18 @@ var StickyISI = /*#__PURE__*/function (_Component) {
     });
     window.addEventListener('scroll', this.handleScroll);
     this.determineState();
-  };
+  }
 
-  _proto.componentWillUnmount = function componentWillUnmount() {
+  componentWillUnmount() {
     this.observer.disconnect();
     window.removeEventListener('scroll', this.handleScroll);
-  };
+  }
 
-  _proto.render = function render() {
-    var fixedStyles = _extends(_extends({}, this.props.stickyStyles), {}, {
+  render() {
+    let fixedStyles = { ...this.props.stickyStyles,
       position: 'fixed',
       bottom: 0
-    });
-
+    };
     return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement("div", {
       className: this.props.className,
       style: this.props.normalStyles,
@@ -100,12 +63,11 @@ var StickyISI = /*#__PURE__*/function (_Component) {
       className: this.props.className,
       style: fixedStyles
     }, this.props.children)));
-  };
+  }
 
-  return StickyISI;
-}(Component);
+}
 StickyISI.propTypes = {
-  footerRef: PropTypes.node,
+  footerRef: PropTypes.instanceOf(Element),
   stickyHeight: PropTypes.number,
   stickAtThreshold: PropTypes.number,
   stickyStyles: PropTypes.object,

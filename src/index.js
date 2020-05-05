@@ -90,7 +90,8 @@ StickyISI.propTypes = {
   /**
    * Element reference to footer
    */
-  footerRef: PropTypes.node,
+  // eslint-disable-next-line no-undef
+  footerRef: PropTypes.instanceOf(Element),
   /**
    * Height of the sticky on the screen(normally fixed)
    */
