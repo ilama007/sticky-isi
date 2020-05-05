@@ -100,6 +100,7 @@ var StickyISI = /*#__PURE__*/function (_Component) {
       style: this.props.normalStyles,
       id: "normal-chappy-isi"
     }, this.props.children), !this.state.isAtBottom && /*#__PURE__*/React__default.createElement(reactPortal.Portal, null, /*#__PURE__*/React__default.createElement("div", {
+      id: "fixed-chappy-isi",
       className: this.props.className,
       style: fixedStyles
     }, this.props.children)));
