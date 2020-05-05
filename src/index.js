@@ -52,7 +52,11 @@ export default class StickyISI extends Component {
         </div>
         {!this.state.isAtBottom && (
           <Portal>
-            <div className={this.props.className} style={fixedStyles}>
+            <div
+              id='fixed-chappy-isi'
+              className={this.props.className}
+              style={fixedStyles}
+            >
               {this.props.children}
             </div>
           </Portal>
